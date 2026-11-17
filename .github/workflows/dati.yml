@@ -1,0 +1,84 @@
+# Gachara: the daily data package (every game, like the app does), built here in the public repository because
+# Actions minutes are free for public repositories. The code comes from the private repository (CODICE_TOKEN);
+# the result is an unsigned package in the "dati-in-arrivo" release, which the private repository signs and
+# publishes in the "dati" release (firma-dati.yml). The signing key never comes here.
+# Docs (private): docs/pubblicazione.md, "I lavori dei dati nel repository pubblico".
+name: Dati
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dati
+  cancel-in-progress: false
+
+jobs:
+  dati:
+    runs-on: ubuntu-latest
+    timeout-minutes: 210
+    permissions:
+      contents: write
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+      # Like the app: a few build pages per run (Prydwen asks 10 seconds between pages).
+      GACHARA_PAGINE_BUILD: "6"
+      GACHARA_ESITI: esiti
+      DOKKANDB_CARTELLA: ${{ github.workspace }}/dokkandb
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          repository: Axel3614/Gachara
+          token: ${{ secrets.CODICE_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # DokkanDB's news first (if DokkanDB doesn't answer, Dokkan uses yesterday's state).
+      - name: Lo stato di DokkanDB
+        env:
+          GH_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: |
+          set -eu
+          gh release download dokkandb-stato -R Axel3614/Gachara -p stato.tar.gz -D "$RUNNER_TEMP"
+          mkdir -p "$DOKKANDB_CARTELLA"
+          tar -xzf "$RUNNER_TEMP/stato.tar.gz" -C "$DOKKANDB_CARTELLA"
+      - name: Le novità di DokkanDB
+        continue-on-error: true
+        timeout-minutes: 90
+        run: node --experimental-strip-types --no-warnings --import ./strumenti/alias.mjs scripts/aggiorna-dokkandb.mts
+      - name: Lo stato aggiornato
+        env:
+          GH_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: |
+          set -eu
+          tar -czf "$RUNNER_TEMP/stato.tar.gz" -C "$DOKKANDB_CARTELLA" .
+          cp "$DOKKANDB_CARTELLA/cache-versions.json" "$RUNNER_TEMP/versioni.json"
+          gh release upload dokkandb-stato -R Axel3614/Gachara "$RUNNER_TEMP/stato.tar.gz" "$RUNNER_TEMP/versioni.json" --clobber
+      - name: Lo stato di ieri
+        run: npm run stato:dati
+      - name: NIKKE
+        continue-on-error: true
+        run: npm run importa -- nikke
+      - name: Dokkan
+        continue-on-error: true
+        run: npm run importa -- dokkan
+      - name: Chaos Zero Nightmare
+        continue-on-error: true
+        run: npm run importa -- czn
+      - name: Brown Dust 2
+        continue-on-error: true
+        run: npm run importa -- bd2
+      - name: Il pacchetto
+        run: npm run pacchetto:dati -- pacchetto nikke dokkan czn bd2
+      - name: Consegna
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CODICE_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: bash scripts/consegna-pacchetto.sh

@@ -1,0 +1,113 @@
+# Gachara: the Dokkan data updater (three times a day, only when DokkanDB's data versions change). It runs here,
+# in the public repository, because Actions minutes are free for public repositories. The code comes from the
+# private repository (CODICE_TOKEN); the result is an unsigned data package in the "dati-in-arrivo" release, which
+# the private repository signs and publishes (firma-dati.yml). The signing key never comes here.
+# Docs (private): docs/pubblicazione.md, "I lavori dei dati nel repository pubblico".
+name: DokkanDB
+
+on:
+  schedule:
+    # 8:30, 10:30 and 16:30 in Italy in winter: when the game updates, plus margin.
+    - cron: "30 7,9,15 * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "aggiorna (even if nothing changed) or nemici (also every missing enemy card, hours)"
+        type: choice
+        options: [aggiorna, nemici]
+        default: aggiorna
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dati
+  cancel-in-progress: false
+
+jobs:
+  # One request: did DokkanDB's data versions change since the last run?
+  controlla:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      cambiato: ${{ steps.confronto.outputs.cambiato }}
+    steps:
+      - name: Confronto
+        id: confronto
+        env:
+          GH_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: |
+          set -u
+          gh release download dokkandb-stato -R Axel3614/Gachara -p versioni.json -D "$RUNNER_TEMP" || echo '{}' > "$RUNNER_TEMP/versioni.json"
+          node -e '
+            (async () => {
+              const prima = JSON.parse(require("fs").readFileSync(process.env.RUNNER_TEMP + "/versioni.json", "utf8"));
+              const r = await fetch("https://api.dokkandb.com/api/cache-versions", { headers: { "User-Agent": "Gachara-updater (+https://axel3614.github.io/gachara/)", Accept: "application/json" } });
+              if (!r.ok) { console.log("DokkanDB: " + r.status); require("fs").appendFileSync(process.env.GITHUB_OUTPUT, "cambiato=false\n"); return; }
+              const ora = await r.json();
+              const cambiato = ["site", "database", "gameData"].some((k) => String(ora[k] ?? "") !== String(prima[k] ?? ""));
+              console.log((cambiato ? "Changed: " : "Same: ") + JSON.stringify({ site: ora.site, database: ora.database, gameData: ora.gameData }));
+              require("fs").appendFileSync(process.env.GITHUB_OUTPUT, "cambiato=" + cambiato + "\n");
+            })();
+          '
+
+  aggiorna:
+    needs: controlla
+    if: ${{ !cancelled() && (github.event_name == 'workflow_dispatch' || needs.controlla.outputs.cambiato == 'true') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.modo == 'nemici' && 330 || 90 }}
+    permissions:
+      contents: write
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+      DOKKANDB_CARTELLA: ${{ github.workspace }}/dokkandb
+      GACHARA_ESITI: esiti
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          repository: Axel3614/Gachara
+          token: ${{ secrets.CODICE_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lo stato
+        env:
+          GH_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: |
+          set -eu
+          gh release download dokkandb-stato -R Axel3614/Gachara -p stato.tar.gz -D "$RUNNER_TEMP"
+          mkdir -p "$DOKKANDB_CARTELLA"
+          tar -xzf "$RUNNER_TEMP/stato.tar.gz" -C "$DOKKANDB_CARTELLA"
+      - name: Le novità
+        env:
+          DOKKANDB_NEMICI_MAX: ${{ inputs.modo == 'nemici' && '100000' || '150' }}
+        run: node --experimental-strip-types --no-warnings --import ./strumenti/alias.mjs scripts/aggiorna-dokkandb.mts ${{ inputs.modo == 'nemici' && '--nemici' || github.event_name == 'workflow_dispatch' && '--forza' || '' }}
+      - name: Lo stato aggiornato
+        env:
+          GH_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: |
+          set -eu
+          tar -czf "$RUNNER_TEMP/stato.tar.gz" -C "$DOKKANDB_CARTELLA" .
+          cp "$DOKKANDB_CARTELLA/cache-versions.json" "$RUNNER_TEMP/versioni.json"
+          gh release upload dokkandb-stato -R Axel3614/Gachara "$RUNNER_TEMP/stato.tar.gz" "$RUNNER_TEMP/versioni.json" --clobber
+      - name: Lo stato di ieri
+        run: npm run stato:dati
+      - name: Dokkan
+        run: npm run importa -- dokkan
+      - name: Il pacchetto
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          gh release download dati -R Axel3614/gachadex-releases -p manifesto.json -O "$RUNNER_TEMP/manifesto-prima.json" --clobber
+          GACHARA_MANIFESTO_PRIMA="$RUNNER_TEMP/manifesto-prima.json" npm run pacchetto:dati -- pacchetto dokkan
+          node -e 'const m = require("./pacchetto/manifesto.json"); if (!m.giochi.dokkan) { console.log("Dokkan not fully read: nothing to publish"); process.exit(1); }'
+      - name: Consegna
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CODICE_TOKEN: ${{ secrets.CODICE_TOKEN }}
+        run: bash scripts/consegna-pacchetto.sh
