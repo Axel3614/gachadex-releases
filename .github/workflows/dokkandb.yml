@@ -1,4 +1,4 @@
-# Gachara: the Dokkan data updater (three times a day, only when DokkanDB's data versions change). It runs here,
+# Gachara: the Dokkan data updater (checked every hour, it runs only when DokkanDB's data versions change). It runs here,
 # in the public repository, because Actions minutes are free for public repositories. The code comes from the
 # private repository (CODICE_TOKEN); the result is an unsigned data package in the "dati-in-arrivo" release, which
 # the private repository signs and publishes (firma-dati.yml). The signing key never comes here.
