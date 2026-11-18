@@ -7,8 +7,9 @@ name: DokkanDB
 
 on:
   schedule:
-    # 8:30, 10:30 and 16:30 in Italy in winter: when the game updates, plus margin.
-    - cron: "30 7,9,15 * * *"
+    # Every hour, at minute 23: GitHub delays or drops scheduled runs (most of all on the hour), and a check that
+    # finds nothing new is one request. Free here (public repository).
+    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       modo:
