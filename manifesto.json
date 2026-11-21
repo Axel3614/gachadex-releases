@@ -1,0 +1,254 @@
+{
+ "formato": 1,
+ "creatoIl": "2026-11-21T16:42:47.129Z",
+ "giochi": {
+  "dokkan": {
+   "aggiornatoIl": "2026-11-21T16:42:44.395Z",
+   "file": {
+    "personaggi.json": {
+     "asset": "dokkan.personaggi.json.gz",
+     "sha256": "eebe045ed142c48b37cb75577cb1f93f0768239da1390884d80b59e8cc64998c",
+     "byte": 1115655,
+     "aggiornatoIl": "2026-11-21T16:42:44.395Z"
+    },
+    "impronte.json": {
+     "asset": "dokkan.impronte.json.gz",
+     "sha256": "799e9216a16c0b2b245a433336550c5683418afece4e38d9e555b493eb29b205",
+     "byte": 1968292,
+     "aggiornatoIl": "2026-11-21T16:42:45.394Z"
+    },
+    "dettagli.json": {
+     "asset": "dokkan.dettagli.json.gz",
+     "sha256": "47e195215c0761b8e79e7d672299a8a2e8fae53b0a1096f7fb60426f009fc290",
+     "byte": 1134404,
+     "aggiornatoIl": "2026-11-21T16:42:44.395Z"
+    },
+    "catalogo.json": {
+     "asset": "dokkan.catalogo.json.gz",
+     "sha256": "011d5cb17702fa1fcd606db88e94cbf3c74cbb95a10c2679a9e681fa798c01a3",
+     "byte": 253681,
+     "aggiornatoIl": "2026-11-21T16:42:44.395Z"
+    },
+    "banner.json": {
+     "asset": "dokkan.banner.json.gz",
+     "sha256": "f4d071ca4b75b345a51ad0e9a861a0c4ef15feda7c512fdd42385cbc17c9a9fd",
+     "byte": 84857,
+     "aggiornatoIl": "2026-11-21T16:42:44.493Z"
+    },
+    "eventi.json": {
+     "asset": "dokkan.eventi.json.gz",
+     "sha256": "1a7addcd7853d278db019410eec4d3ef2a9f22d772861999021d599667a58bbc",
+     "byte": 2251997,
+     "aggiornatoIl": "2026-11-21T16:42:44.502Z"
+    },
+    "combattimento.json": {
+     "asset": "dokkan.combattimento.json.gz",
+     "sha256": "de6bc1f736e0bedc3ba4843608af8a41bc4031464af36747583192887d75da4f",
+     "byte": 3660915,
+     "aggiornatoIl": "2026-11-21T16:42:44.600Z"
+    },
+    "oggetti.json": {
+     "asset": "dokkan.oggetti.json.gz",
+     "sha256": "e0fd3a6a5fb1fe1d339a2f125cdab5f0d6b328014a2d23ace7c6fc23c5ee70d7",
+     "byte": 16201,
+     "aggiornatoIl": "2026-11-21T16:42:45.394Z"
+    },
+    "memorie.json": {
+     "asset": "dokkan.memorie.json.gz",
+     "sha256": "59e2736af939b991c27b8af8100262c5e0d435cf84fde4e2e356720efd3028f6",
+     "byte": 98704,
+     "aggiornatoIl": "2026-11-21T16:42:45.394Z"
+    },
+    "boss.json": {
+     "asset": "dokkan.boss.json.gz",
+     "sha256": "6633ce0419ea1d56b16a426dcd3b94db12dfc152c151dcd4d76e76bb6e6c3c88",
+     "byte": 4557285,
+     "aggiornatoIl": "2026-11-21T16:42:45.396Z"
+    },
+    "zbattle.json": {
+     "asset": "dokkan.zbattle.json.gz",
+     "sha256": "6ffdbd409e92a9ea66b0cba859c161b809b40e3dcfff77a90ab0cca452cd066e",
+     "byte": 46655,
+     "aggiornatoIl": "2026-11-21T16:42:45.540Z"
+    },
+    "rmbattle.json": {
+     "asset": "dokkan.rmbattle.json.gz",
+     "sha256": "f6ecb0c9a2fc8bea73d011aaf217c1acd7826fec72ca11db072b3b3707d5f429",
+     "byte": 42605,
+     "aggiornatoIl": "2026-11-21T16:42:45.547Z"
+    },
+    "schede.json": {
+     "asset": "dokkan.schede.json.gz",
+     "sha256": "a61dbcf9a7a43de9f3430e0795ec08c0cfef5bf2bdf0cd3d8b3f1cf5363f5f00",
+     "byte": 9066898,
+     "aggiornatoIl": "2026-11-21T16:42:45.550Z"
+    },
+    "guida-gachara-dokkan.json": {
+     "asset": "dokkan.guida-gachara-dokkan.json.gz",
+     "sha256": "ceac117b4ba4daa2a6fd625959766a9f40018f6d7f7aec1d890f6781fc2f45fe",
+     "byte": 119721,
+     "aggiornatoIl": "2026-11-21T16:42:45.206Z"
+    }
+   }
+  },
+  "nikke": {
+   "aggiornatoIl": "2026-11-21T13:17:25.224Z",
+   "file": {
+    "personaggi.json": {
+     "asset": "nikke.personaggi.json.gz",
+     "sha256": "301bec0d2bf817b557a063c9a89308f02172827b57d0d676b1bcb5fa5c8a4aaa",
+     "byte": 54250,
+     "aggiornatoIl": "2026-11-21T13:17:25.224Z"
+    },
+    "guida-lootandwaifus.json": {
+     "asset": "nikke.guida-lootandwaifus.json.gz",
+     "sha256": "6e24ad330f18a04fddb9a7749d3b5f6fb9f312cad0aefd059b3d6bd160eb85b3",
+     "byte": 22730,
+     "aggiornatoIl": "2026-11-21T13:19:29.062Z"
+    },
+    "guida-nikke-gg.json": {
+     "asset": "nikke.guida-nikke-gg.json.gz",
+     "sha256": "4992667c15b8b98a345bcb23bd38f409d8679da314486398903b759e4da1fd73",
+     "byte": 34305,
+     "aggiornatoIl": "2026-11-21T13:19:39.395Z"
+    },
+    "guida-nikkers.json": {
+     "asset": "nikke.guida-nikkers.json.gz",
+     "sha256": "a9afd7a2c2f1f5f34e20a2f6e719d3ab88f7a2761272e2c05bf36c5ffb307ccb",
+     "byte": 69527,
+     "aggiornatoIl": "2026-10-23T09:23:06.431Z"
+    },
+    "guida-prydwen.json": {
+     "asset": "nikke.guida-prydwen.json.gz",
+     "sha256": "bfa4afb25d40accf0d3f4f4c70810e943aa3a5e8a3b55244c6b386dd38227178",
+     "byte": 63101,
+     "aggiornatoIl": "2026-11-21T13:19:28.802Z"
+    },
+    "squadre-nikkers.json": {
+     "asset": "nikke.squadre-nikkers.json.gz",
+     "sha256": "0ed572a092ce906c877d5e0b799f75e3854c8c3dd1235c61e4322ea4e06f8422",
+     "byte": 34570,
+     "aggiornatoIl": "2026-11-21T13:20:48.862Z"
+    },
+    "build-prydwen.json": {
+     "asset": "nikke.build-prydwen.json.gz",
+     "sha256": "da9e28339d465e6a5d7a8b9113cb0b933cbb36404378420b4210c5a8bd76b616",
+     "byte": 100628,
+     "aggiornatoIl": "2026-11-21T13:19:28.811Z"
+    },
+    "modalita-nikke-gg.json": {
+     "asset": "nikke.modalita-nikke-gg.json.gz",
+     "sha256": "e872d5c8a81a068090629d225e6d17683ed0369774e7401fb00200b9c6a80c2b",
+     "byte": 2074,
+     "aggiornatoIl": "2026-11-01T14:30:38.219Z"
+    },
+    "modalita-prydwen.json": {
+     "asset": "nikke.modalita-prydwen.json.gz",
+     "sha256": "df975fef81ea7272ac608495a57220807e4bb19e5f326e613b4bd20e727c1d64",
+     "byte": 64730,
+     "aggiornatoIl": "2026-11-21T13:19:28.915Z"
+    },
+    "modalita-skyjlv.json": {
+     "asset": "nikke.modalita-skyjlv.json.gz",
+     "sha256": "f14afc47772a1f6a51b90384ddaad843e61c7ed9cdf973a590068a94ab579be1",
+     "byte": 10152,
+     "aggiornatoIl": "2026-11-21T13:19:37.686Z"
+    }
+   }
+  },
+  "czn": {
+   "aggiornatoIl": "2026-11-21T13:20:53.431Z",
+   "file": {
+    "personaggi.json": {
+     "asset": "czn.personaggi.json.gz",
+     "sha256": "c62db214abd0c4dd0e9d389371f507a2a43738deae51e0552f09a76be41335c6",
+     "byte": 9369,
+     "aggiornatoIl": "2026-11-21T13:20:53.431Z"
+    },
+    "boss.json": {
+     "asset": "czn.boss.json.gz",
+     "sha256": "f708dddf92119cdcca88007987f1de83718495ad5db7d65c561061183d433983",
+     "byte": 30710,
+     "aggiornatoIl": "2026-11-18T11:03:09.841Z"
+    },
+    "guida-czn-gg.json": {
+     "asset": "czn.guida-czn-gg.json.gz",
+     "sha256": "1f77e16cf82c96545b5c1a7e35bcea9b1ef6be4661b099cbe839da47889fb642",
+     "byte": 2220,
+     "aggiornatoIl": "2026-11-21T13:22:59.695Z"
+    },
+    "guida-cznmeta.json": {
+     "asset": "czn.guida-cznmeta.json.gz",
+     "sha256": "1c6485ca68946d71b453a6d5b13fe8400a9bbce3676558630d6fc425927a9c86",
+     "byte": 31381,
+     "aggiornatoIl": "2026-11-21T13:22:56.535Z"
+    },
+    "guida-prydwen.json": {
+     "asset": "czn.guida-prydwen.json.gz",
+     "sha256": "d46bf6ffb5af8a5e78f7c1242bc76979d50af67ca1c79e1e5bca70085409eec5",
+     "byte": 13961,
+     "aggiornatoIl": "2026-11-21T13:20:53.431Z"
+    },
+    "squadre-prydwen.json": {
+     "asset": "czn.squadre-prydwen.json.gz",
+     "sha256": "37b73a6fc727070b7de14dafc515379d7b5b711e807c64c349bf6b685d90c2a6",
+     "byte": 44024,
+     "aggiornatoIl": "2026-11-21T13:21:03.688Z"
+    },
+    "build-equipaggiamento.json": {
+     "asset": "czn.build-equipaggiamento.json.gz",
+     "sha256": "2e0a40e2d7549df592ba2b7ee1120d86b7359b1b8e03a4de2fb8f45c803adf83",
+     "byte": 32461,
+     "aggiornatoIl": "2026-11-17"
+    },
+    "build-neutre.json": {
+     "asset": "czn.build-neutre.json.gz",
+     "sha256": "fa1546801bd22c5092d5ab9d74c049222c8c6a62e15bdf01bc2e7d59f2e6396a",
+     "byte": 39827,
+     "aggiornatoIl": "2026-11-17"
+    },
+    "build-prydwen.json": {
+     "asset": "czn.build-prydwen.json.gz",
+     "sha256": "87c4a86ea9a483f9032f3f3a4fcb7536339cb6e0a62b84d26fdf1f687ac80285",
+     "byte": 899208,
+     "aggiornatoIl": "2026-11-21T13:23:09.698Z"
+    }
+   }
+  },
+  "bd2": {
+   "aggiornatoIl": "2026-11-21T13:23:10.875Z",
+   "file": {
+    "personaggi.json": {
+     "asset": "bd2.personaggi.json.gz",
+     "sha256": "bbcf5f14fd328b2cdcbc4dfc7770849065d5a6637cb0eeac7907f584147f2cd9",
+     "byte": 54468,
+     "aggiornatoIl": "2026-11-21T13:23:10.875Z"
+    },
+    "costumi.json": {
+     "asset": "bd2.costumi.json.gz",
+     "sha256": "e0a05d16da1f4c8e3ec407801fdc235f98ef3d471862af40776eca9c748230e6",
+     "byte": 222586,
+     "aggiornatoIl": "2026-11-21T13:23:10.882Z"
+    },
+    "strategie.json": {
+     "asset": "bd2.strategie.json.gz",
+     "sha256": "8adfacf4af2e94bab84018ccf582b7cd35677e360361c61375785556e7b0855f",
+     "byte": 800595,
+     "aggiornatoIl": "2026-11-21T13:23:11.645Z"
+    },
+    "guida-banner-recommendation.json": {
+     "asset": "bd2.guida-banner-recommendation.json.gz",
+     "sha256": "f1bcb6594c416035c695b84069091799456d5abe7fca319192a26a722c133f18",
+     "byte": 36529,
+     "aggiornatoIl": "2026-10-23T09:28:10.991Z"
+    },
+    "guida-giocatori-bd2.json": {
+     "asset": "bd2.guida-giocatori-bd2.json.gz",
+     "sha256": "51e4f70eb5e4a30374e493d4aaec16ca4c6377fd943ac6cde43718035e52d28f",
+     "byte": 17027,
+     "aggiornatoIl": "2026-11-21T13:23:11.645Z"
+    }
+   }
+  }
+ }
+}
